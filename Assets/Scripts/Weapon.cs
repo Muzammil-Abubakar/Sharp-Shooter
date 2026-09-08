@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
+    [SerializeField] private ParticleSystem muzzleFlash;
+
     private Camera mainCamera;
     private StarterAssets.StarterAssetsInputs input;
 
@@ -15,6 +17,9 @@ public class Weapon : MonoBehaviour
     {
         if (input.shoot)
         {
+            // Play muzzle flash
+            muzzleFlash.Play();
+
             Ray ray = mainCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
 
             if (Physics.Raycast(ray, out RaycastHit hit))
