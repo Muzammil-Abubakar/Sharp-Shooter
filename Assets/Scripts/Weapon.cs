@@ -3,22 +3,25 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     private Camera mainCamera;
+    private StarterAssets.StarterAssetsInputs input;
 
-    void Start()
+    void Awake()
     {
         mainCamera = Camera.main;
+        input = GetComponentInParent<StarterAssets.StarterAssetsInputs>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        // Create a ray from the center of the main camera
-        Ray ray = mainCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
-
-        // Fire the ray
-        if (Physics.Raycast(ray, out RaycastHit hit))
+        if (input.shoot)
         {
-            Debug.Log("Ray is hitting: " + hit.collider.gameObject.name);
+            Ray ray = mainCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
+
+            if (Physics.Raycast(ray, out RaycastHit hit))
+            {
+                Debug.Log("Ray is hitting: " + hit.collider.gameObject.name);
+            }
+            input.ShootInput(false);
         }
     }
 }
