@@ -20,7 +20,15 @@ public class Weapon : MonoBehaviour
             if (Physics.Raycast(ray, out RaycastHit hit))
             {
                 Debug.Log("Ray is hitting: " + hit.collider.gameObject.name);
+
+                EnemyHealth enemyHealth = hit.collider.GetComponent<EnemyHealth>();
+
+                if (enemyHealth != null)
+                {
+                    enemyHealth.TakeDamage();
+                }
             }
+
             input.ShootInput(false);
         }
     }

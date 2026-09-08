@@ -471,6 +471,7 @@ GameObject:
   - component: {fileID: 801830345}
   - component: {fileID: 801830344}
   - component: {fileID: 801830346}
+  - component: {fileID: 801830347}
   m_Layer: 6
   m_Name: Robot
   m_TagString: Untagged
@@ -508,7 +509,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 3
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -552,6 +553,18 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &801830347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 801830342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3461e9d5ecac4f144a5436cb5da039ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -1876,6 +1889,7 @@ MonoBehaviour:
   look: {x: 0, y: 0}
   jump: 0
   sprint: 0
+  shoot: 0
   analogMovement: 0
   cursorLocked: 1
   cursorInputForLook: 1
