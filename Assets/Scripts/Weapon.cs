@@ -1,9 +1,11 @@
+
 using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
     [SerializeField] Animator animator;
     [SerializeField] private ParticleSystem muzzleFlash;
+    [SerializeField] private GameObject hitVFX;
 
     private Camera mainCamera;
     private StarterAssets.StarterAssetsInputs input;
@@ -20,16 +22,19 @@ public class Weapon : MonoBehaviour
     {
         if (input.shoot)
         {
-            
             muzzleFlash.Play();
-            animator.Play(SHOOT_STRING,0,0f);
-            input.ShootInput(false);
+            animator.Play(SHOOT_STRING, 0, 0f);
 
-            Ray ray = mainCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
+            Ray ray = mainCamera.ViewportPointToRay(
+                new Vector3(0.5f, 0.5f, 0f)
+            );
 
             if (Physics.Raycast(ray, out RaycastHit hit))
             {
                 Debug.Log("Ray is hitting: " + hit.collider.gameObject.name);
+
+                // Spawn hit VFX at the point where the ray hits
+                Instantiate(hitVFX, hit.point, Quaternion.LookRotation(hit.normal));
 
                 EnemyHealth enemyHealth = hit.collider.GetComponent<EnemyHealth>();
 
@@ -43,3 +48,4 @@ public class Weapon : MonoBehaviour
         }
     }
 }
+
