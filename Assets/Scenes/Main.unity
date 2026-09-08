@@ -1667,7 +1667,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1979298174367833003, guid: ae8a2d037393fc34f90ad6098c86cc79, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.86
+      value: 2.575
       objectReference: {fileID: 0}
     - target: {fileID: 1979298174367833003, guid: ae8a2d037393fc34f90ad6098c86cc79, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1701,9 +1701,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3718300411302556590, guid: ae8a2d037393fc34f90ad6098c86cc79, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 5b5db6ee439b4aa459f784fcbf982e6e, type: 2}
+    - target: {fileID: 7020833321490794096, guid: ae8a2d037393fc34f90ad6098c86cc79, type: 3}
+      propertyPath: m_Height
+      value: 2.38
+      objectReference: {fileID: 0}
+    - target: {fileID: 7020833321490794096, guid: ae8a2d037393fc34f90ad6098c86cc79, type: 3}
+      propertyPath: m_Radius
+      value: 0.82
+      objectReference: {fileID: 0}
+    - target: {fileID: 7020833321490794096, guid: ae8a2d037393fc34f90ad6098c86cc79, type: 3}
+      propertyPath: m_BaseOffset
+      value: 1.65
+      objectReference: {fileID: 0}
     - target: {fileID: 7093298339010392659, guid: ae8a2d037393fc34f90ad6098c86cc79, type: 3}
       propertyPath: m_Name
       value: Robot
+      objectReference: {fileID: 0}
+    - target: {fileID: 7658214498664356928, guid: ae8a2d037393fc34f90ad6098c86cc79, type: 3}
+      propertyPath: m_Name
+      value: Robot Model
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
