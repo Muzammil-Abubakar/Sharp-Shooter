@@ -470,6 +470,7 @@ GameObject:
   - component: {fileID: 801830343}
   - component: {fileID: 801830345}
   - component: {fileID: 801830344}
+  - component: {fileID: 801830346}
   m_Layer: 6
   m_Name: Robot
   m_TagString: Untagged
@@ -528,6 +529,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Robot
   target: {fileID: 8997996947996825769}
+--- !u!136 &801830346
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 801830342}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.67
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -586,6 +610,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 870403667}
+  - component: {fileID: 870403668}
   m_Layer: 3
   m_Name: Pistol
   m_TagString: Untagged
@@ -609,6 +634,18 @@ Transform:
   - {fileID: 1583425955}
   m_Father: {fileID: 4135013736188738383}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &870403668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 870403666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99e87cdbca6b91b44b1f6d3d0cb92607, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Weapon
 --- !u!1 &1261450778
 GameObject:
   m_ObjectHideFlags: 0
