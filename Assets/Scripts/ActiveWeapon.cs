@@ -36,4 +36,9 @@ public class ActiveWeapon : MonoBehaviour
 
         wasShooting = input.shoot;
     }
+
+    public void SwitchWeapon(WeaponSO newWeaponSO)
+    {
+        weaponSO = newWeaponSO;
+    }
 }
