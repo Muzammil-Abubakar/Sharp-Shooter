@@ -2,13 +2,13 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-    private int health = 3;
+    [SerializeField] private int health = 3;
 
-    public void TakeDamage()
+    public void TakeDamage(int damage)
     {
-        health--;
+        health -= damage;
 
-        Debug.Log("Enemy took damage. Health remaining: " + health);
+        Debug.Log("Enemy took " + damage + " damage. Health remaining: " + health);
 
         if (health <= 0)
         {
