@@ -6,16 +6,15 @@ public class ActiveWeapon : MonoBehaviour
     [SerializeField] private WeaponSO weaponSO;
 
     private Animator animator;
-    private Camera mainCamera;
     private StarterAssetsInputs input;
     private Weapon weapon;
     private float nextFireTime;
+    private bool wasShooting;
 
     const string SHOOT_STRING = "Shoot";
 
     void Awake()
     {
-        mainCamera = Camera.main;
         animator = GetComponent<Animator>();
         input = GetComponentInParent<StarterAssetsInputs>();
         weapon = GetComponentInChildren<Weapon>();
@@ -23,11 +22,18 @@ public class ActiveWeapon : MonoBehaviour
 
     void Update()
     {
-        if (input.shoot && Time.time >= nextFireTime)
+        bool shootPressed = input.shoot && !wasShooting;
+
+        if (weaponSO.isAutomatic ? input.shoot : shootPressed)
         {
-            weapon.Shoot(weaponSO);
-            animator.Play(SHOOT_STRING, 0, 0f);
-            nextFireTime = Time.time + weaponSO.FireRate;
+            if (Time.time >= nextFireTime)
+            {
+                weapon.Shoot(weaponSO);
+                animator.Play(SHOOT_STRING, 0, 0f);
+                nextFireTime = Time.time + weaponSO.FireRate;
+            }
         }
+
+        wasShooting = input.shoot;
     }
 }
