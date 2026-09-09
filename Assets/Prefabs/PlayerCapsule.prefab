@@ -383,6 +383,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1971776976887335057}
   - component: {fileID: 3292943095684168998}
+  - component: {fileID: 1782445116686260296}
   m_Layer: 3
   m_Name: Active Weapon
   m_TagString: Untagged
@@ -428,6 +429,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1782445116686260296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5587122753768983270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf0a21032424d714eb9d61d3e6f97bc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ActiveWeapon
+  weaponSO: {fileID: 11400000, guid: a6de9488d7c166e4984e6959e0ef26d2, type: 2}
+  animator: {fileID: 3292943095684168998}
 --- !u!1001 &3688184598504537674
 PrefabInstance:
   m_ObjectHideFlags: 0

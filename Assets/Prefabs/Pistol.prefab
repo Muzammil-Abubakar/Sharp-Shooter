@@ -78,10 +78,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99e87cdbca6b91b44b1f6d3d0cb92607, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Weapon
-  weaponData: {fileID: 11400000, guid: a6de9488d7c166e4984e6959e0ef26d2, type: 2}
-  animator: {fileID: 0}
-  muzzleFlash: {fileID: 8483964392505208033}
-  hitVFX: {fileID: 1342792748983837173, guid: 0e11a5b51145688449b77a3316a21009, type: 3}
+  muzzle: {fileID: 8483964392505208033}
 --- !u!1 &4635330966590230711
 GameObject:
   m_ObjectHideFlags: 0

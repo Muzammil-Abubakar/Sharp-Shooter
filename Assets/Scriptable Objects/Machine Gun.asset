@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Machine Gun
   m_EditorClassIdentifier: Assembly-CSharp::WeaponSO
   Damage: 1
-  FireRate: 0.3
+  FireRate: 0.1
+  HitVFX: {fileID: 0}
