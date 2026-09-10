@@ -8,6 +8,7 @@ public class WeaponSO : ScriptableObject
     public bool isAutomatic = true;
     public bool canZoom = false;
     public float ZoomAmount = 15f;
+    public int MagazineSize = 12;
 
     public GameObject WeaponPrefab;
     public GameObject HitVFX;

@@ -442,7 +442,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf0a21032424d714eb9d61d3e6f97bc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ActiveWeapon
-  weaponSO: {fileID: 11400000, guid: 6a7f7e434d8016c43a7b917f34896733, type: 2}
+  startingWeaponSO: {fileID: 11400000, guid: 6a7f7e434d8016c43a7b917f34896733, type: 2}
+  Ammo: 
+  ammoText: {fileID: 0}
   zoomVignette: {fileID: 0}
   cinemachineCamera: {fileID: 0}
 --- !u!1001 &5982767128575996297

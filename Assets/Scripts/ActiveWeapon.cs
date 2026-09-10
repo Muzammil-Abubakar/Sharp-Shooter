@@ -1,10 +1,15 @@
 using UnityEngine;
+using TMPro;
 using StarterAssets;
 using Unity.Cinemachine;
 
 public class ActiveWeapon : MonoBehaviour
 {
-    [SerializeField] private WeaponSO weaponSO;
+    [Header("Starting Weapon")]
+    [SerializeField] private WeaponSO startingWeaponSO;
+
+    [Header("Ammo")]
+    [SerializeField] private TMP_Text ammoText;
 
     [Header("Zoom")]
     [SerializeField] private GameObject zoomVignette;
@@ -17,22 +22,37 @@ public class ActiveWeapon : MonoBehaviour
     // Found automatically from the parent.
     private FirstPersonController firstPersonController;
 
+    private WeaponSO weaponSO;
+
+    private int currentAmmo;
+
     private float nextFireTime;
     private bool wasShooting;
     private bool wasZooming;
 
     private const float DEFAULT_FOV = 40f;
-
-    const string SHOOT_STRING = "Shoot";
+    private const string SHOOT_STRING = "Shoot";
 
     void Awake()
     {
         animator = GetComponent<Animator>();
         input = GetComponentInParent<StarterAssetsInputs>();
-        weapon = GetComponentInChildren<Weapon>();
 
         // Find the FirstPersonController from the parent.
         firstPersonController = GetComponentInParent<FirstPersonController>();
+
+        // Set the current weapon data to the starting weapon.
+        weaponSO = startingWeaponSO;
+
+        // Spawn the starting weapon.
+        SpawnWeapon();
+
+        // Initialize ammo from the starting weapon.
+        if (weaponSO != null)
+        {
+            currentAmmo = weaponSO.MagazineSize;
+            UpdateAmmoText();
+        }
 
         // Make sure zoom starts disabled.
         SetZoom(false);
@@ -64,8 +84,19 @@ public class ActiveWeapon : MonoBehaviour
         {
             if (Time.time >= nextFireTime)
             {
+                // Don't shoot if we have no ammo.
+                if (currentAmmo <= 0)
+                {
+                    return;
+                }
+
+                // Decrease ammo when shooting.
+                DecreaseAmmo();
+
                 weapon.Shoot(weaponSO);
+
                 animator.Play(SHOOT_STRING, 0, 0f);
+
                 nextFireTime = Time.time + weaponSO.FireRate;
             }
         }
@@ -108,6 +139,40 @@ public class ActiveWeapon : MonoBehaviour
         }
     }
 
+    private void SpawnWeapon()
+    {
+        if (weaponSO == null)
+        {
+            Debug.LogWarning("ActiveWeapon does not have a Starting Weapon SO assigned.");
+            return;
+        }
+
+        if (weaponSO.WeaponPrefab == null)
+        {
+            Debug.LogWarning("The Starting Weapon SO does not have a Weapon Prefab assigned.");
+            return;
+        }
+
+        GameObject newWeapon = Instantiate(
+            weaponSO.WeaponPrefab,
+            transform
+        );
+
+        // Set the weapon to the local origin.
+        newWeapon.transform.localPosition = Vector3.zero;
+        newWeapon.transform.localRotation = Quaternion.identity;
+
+        // Get the Weapon component from the new weapon.
+        weapon = newWeapon.GetComponent<Weapon>();
+
+        if (weapon == null)
+        {
+            Debug.LogWarning(
+                $"The weapon prefab '{newWeapon.name}' does not contain a Weapon component."
+            );
+        }
+    }
+
     private void SetZoom(bool isZooming)
     {
         if (zoomVignette != null)
@@ -132,14 +197,50 @@ public class ActiveWeapon : MonoBehaviour
         }
     }
 
+    public void IncreaseAmmo(int amount)
+    {
+        if (amount <= 0)
+        {
+            return;
+        }
+
+        currentAmmo += amount;
+        UpdateAmmoText();
+    }
+
+    public void DecreaseAmmo(int amount = 1)
+    {
+        if (amount <= 0)
+        {
+            return;
+        }
+
+        currentAmmo -= amount;
+        currentAmmo = Mathf.Max(currentAmmo, 0);
+
+        UpdateAmmoText();
+    }
+
+    private void UpdateAmmoText()
+    {
+        if (ammoText != null)
+        {
+            ammoText.text = currentAmmo.ToString();
+        }
+    }
+
     public void SwitchWeapon(WeaponSO newWeaponSO)
     {
-        // Destroy the current weapon
-        Weapon currentWeapon = GetComponentInChildren<Weapon>();
-
-        if (currentWeapon != null)
+        if (newWeaponSO == null)
         {
-            Destroy(currentWeapon.gameObject);
+            Debug.LogWarning("Cannot switch weapon because the new WeaponSO is null.");
+            return;
+        }
+
+        // Destroy the current weapon.
+        if (weapon != null)
+        {
+            Destroy(weapon.gameObject);
         }
 
         // Reset zoom when switching weapons.
@@ -147,20 +248,14 @@ public class ActiveWeapon : MonoBehaviour
         SetCameraFOV(DEFAULT_FOV);
         ChangeRotationSpeed(DEFAULT_FOV);
 
-        // Update the weapon data
+        // Update the current weapon data.
         weaponSO = newWeaponSO;
 
-        // Spawn the new weapon
-        GameObject newWeapon = Instantiate(
-            weaponSO.WeaponPrefab,
-            transform
-        );
+        // Reset ammo using the new weapon's magazine size.
+        currentAmmo = weaponSO.MagazineSize;
+        UpdateAmmoText();
 
-        // Set the weapon to the local origin
-        newWeapon.transform.localPosition = Vector3.zero;
-        newWeapon.transform.localRotation = Quaternion.identity;
-
-        // Get the Weapon component from the new weapon
-        weapon = newWeapon.GetComponent<Weapon>();
+        // Spawn the new weapon.
+        SpawnWeapon();
     }
 }
