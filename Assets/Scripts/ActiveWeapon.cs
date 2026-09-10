@@ -8,8 +8,10 @@ public class ActiveWeapon : MonoBehaviour
     private Animator animator;
     private StarterAssetsInputs input;
     private Weapon weapon;
+
     private float nextFireTime;
     private bool wasShooting;
+    private bool wasZooming;
 
     const string SHOOT_STRING = "Shoot";
 
@@ -22,6 +24,15 @@ public class ActiveWeapon : MonoBehaviour
 
     void Update()
     {
+        HandleShooting();
+        HandleZoom();
+
+        wasShooting = input.shoot;
+        wasZooming = input.zoom;
+    }
+
+    private void HandleShooting()
+    {
         bool shootPressed = input.shoot && !wasShooting;
 
         if (weaponSO.isAutomatic ? input.shoot : shootPressed)
@@ -33,8 +44,37 @@ public class ActiveWeapon : MonoBehaviour
                 nextFireTime = Time.time + weaponSO.FireRate;
             }
         }
+    }
 
-        wasShooting = input.shoot;
+    private void HandleZoom()
+    {
+        bool zoomStarted = input.zoom && !wasZooming;
+        bool zoomReleased = !input.zoom && wasZooming;
+
+        // Zoom started
+        if (zoomStarted)
+        {
+            if (weaponSO.canZoom)
+            {
+                Debug.Log("Zoom Start");
+            }
+            else
+            {
+                Debug.Log("Cannot Zoom: Current weapon cannot zoom.");
+            }
+        }
+
+        // Zoom held
+        if (input.zoom && weaponSO.canZoom)
+        {
+            Debug.Log("Zoom Held");
+        }
+
+        // Zoom released
+        if (zoomReleased && weaponSO.canZoom)
+        {
+            Debug.Log("Zoom Release");
+        }
     }
 
     public void SwitchWeapon(WeaponSO newWeaponSO)
