@@ -441,7 +441,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf0a21032424d714eb9d61d3e6f97bc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ActiveWeapon
-  weaponSO: {fileID: 11400000, guid: a6de9488d7c166e4984e6959e0ef26d2, type: 2}
+  weaponSO: {fileID: 11400000, guid: 79d85240cfd2ec547b992e7a7c80b1f7, type: 2}
 --- !u!1001 &5974339234069395032
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -452,31 +452,31 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 307788685618425130, guid: e192f80e8a2c9904dac2915d906a49c6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.21999997
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 307788685618425130, guid: e192f80e8a2c9904dac2915d906a49c6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.21000004
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 307788685618425130, guid: e192f80e8a2c9904dac2915d906a49c6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.6300001
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 307788685618425130, guid: e192f80e8a2c9904dac2915d906a49c6, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.69436
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 307788685618425130, guid: e192f80e8a2c9904dac2915d906a49c6, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.013171004
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 307788685618425130, guid: e192f80e8a2c9904dac2915d906a49c6, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.719392
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 307788685618425130, guid: e192f80e8a2c9904dac2915d906a49c6, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.012884601
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 307788685618425130, guid: e192f80e8a2c9904dac2915d906a49c6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
