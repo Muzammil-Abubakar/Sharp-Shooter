@@ -39,6 +39,28 @@ public class ActiveWeapon : MonoBehaviour
 
     public void SwitchWeapon(WeaponSO newWeaponSO)
     {
+        // Destroy the current weapon
+        Weapon currentWeapon = GetComponentInChildren<Weapon>();
+
+        if (currentWeapon != null)
+        {
+            Destroy(currentWeapon.gameObject);
+        }
+
+        // Update the weapon data
         weaponSO = newWeaponSO;
+
+        // Spawn the new weapon
+        GameObject newWeapon = Instantiate(
+            weaponSO.WeaponPrefab,
+            transform
+        );
+
+        // Set the weapon to the local origin
+        newWeapon.transform.localPosition = Vector3.zero;
+        newWeapon.transform.localRotation = Quaternion.identity;
+
+        // Get the Weapon component from the new weapon
+        weapon = newWeapon.GetComponent<Weapon>();
     }
 }

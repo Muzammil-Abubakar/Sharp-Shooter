@@ -6,5 +6,7 @@ public class WeaponSO : ScriptableObject
     public int Damage = 1;
     public float FireRate = 0.5f;
     public bool isAutomatic = true;
+
+    public GameObject WeaponPrefab;
     public GameObject HitVFX;
 }
