@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class WeaponPickup : MonoBehaviour
+public class WeaponPickup : Pickup
 {
     [SerializeField] private WeaponSO weaponSO;
     [SerializeField] private Transform rotateTransform;
@@ -8,22 +8,25 @@ public class WeaponPickup : MonoBehaviour
 
     private ActiveWeapon activeWeapon;
 
-    void Awake()
+    private void Awake()
     {
         activeWeapon = FindAnyObjectByType<ActiveWeapon>();
     }
 
-    void Update()
+    private void Update()
     {
         rotateTransform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime);
     }
 
-    void OnTriggerEnter(Collider other)
+    protected override void OnPickup(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (activeWeapon == null)
         {
-            activeWeapon.SwitchWeapon(weaponSO);
-            Destroy(gameObject);
+            Debug.LogWarning("WeaponPickup could not find an ActiveWeapon.");
+            return;
         }
+
+        activeWeapon.SwitchWeapon(weaponSO);
+        Destroy(gameObject);
     }
 }
