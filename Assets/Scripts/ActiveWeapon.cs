@@ -1,17 +1,27 @@
 using UnityEngine;
 using StarterAssets;
+using Unity.Cinemachine;
 
 public class ActiveWeapon : MonoBehaviour
 {
     [SerializeField] private WeaponSO weaponSO;
 
+    [Header("Zoom")]
+    [SerializeField] private GameObject zoomVignette;
+    [SerializeField] private CinemachineCamera cinemachineCamera;
+
     private Animator animator;
     private StarterAssetsInputs input;
     private Weapon weapon;
 
+    // Found automatically from the parent.
+    private FirstPersonController firstPersonController;
+
     private float nextFireTime;
     private bool wasShooting;
     private bool wasZooming;
+
+    private const float DEFAULT_FOV = 40f;
 
     const string SHOOT_STRING = "Shoot";
 
@@ -20,6 +30,21 @@ public class ActiveWeapon : MonoBehaviour
         animator = GetComponent<Animator>();
         input = GetComponentInParent<StarterAssetsInputs>();
         weapon = GetComponentInChildren<Weapon>();
+
+        // Find the FirstPersonController from the parent.
+        firstPersonController = GetComponentInParent<FirstPersonController>();
+
+        // Make sure zoom starts disabled.
+        SetZoom(false);
+
+        // Make sure the camera starts at the default FOV.
+        SetCameraFOV(DEFAULT_FOV);
+
+        // Make sure rotation speed starts at the default 40 FOV value.
+        if (firstPersonController != null)
+        {
+            firstPersonController.ChangeRotationSpeed(DEFAULT_FOV);
+        }
     }
 
     void Update()
@@ -56,7 +81,9 @@ public class ActiveWeapon : MonoBehaviour
         {
             if (weaponSO.canZoom)
             {
-                Debug.Log("Zoom Start");
+                SetZoom(true);
+                SetCameraFOV(weaponSO.ZoomAmount);
+                ChangeRotationSpeed(weaponSO.ZoomAmount);
             }
             else
             {
@@ -67,13 +94,41 @@ public class ActiveWeapon : MonoBehaviour
         // Zoom held
         if (input.zoom && weaponSO.canZoom)
         {
-            Debug.Log("Zoom Held");
+            SetZoom(true);
+            SetCameraFOV(weaponSO.ZoomAmount);
+            ChangeRotationSpeed(weaponSO.ZoomAmount);
         }
 
         // Zoom released
-        if (zoomReleased && weaponSO.canZoom)
+        if (zoomReleased)
         {
-            Debug.Log("Zoom Release");
+            SetZoom(false);
+            SetCameraFOV(DEFAULT_FOV);
+            ChangeRotationSpeed(DEFAULT_FOV);
+        }
+    }
+
+    private void SetZoom(bool isZooming)
+    {
+        if (zoomVignette != null)
+        {
+            zoomVignette.SetActive(isZooming);
+        }
+    }
+
+    private void SetCameraFOV(float fov)
+    {
+        if (cinemachineCamera != null)
+        {
+            cinemachineCamera.Lens.FieldOfView = fov;
+        }
+    }
+
+    private void ChangeRotationSpeed(float fov)
+    {
+        if (firstPersonController != null)
+        {
+            firstPersonController.ChangeRotationSpeed(fov);
         }
     }
 
@@ -86,6 +141,11 @@ public class ActiveWeapon : MonoBehaviour
         {
             Destroy(currentWeapon.gameObject);
         }
+
+        // Reset zoom when switching weapons.
+        SetZoom(false);
+        SetCameraFOV(DEFAULT_FOV);
+        ChangeRotationSpeed(DEFAULT_FOV);
 
         // Update the weapon data
         weaponSO = newWeaponSO;

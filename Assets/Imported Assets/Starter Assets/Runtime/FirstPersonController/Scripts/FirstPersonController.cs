@@ -64,7 +64,7 @@ namespace StarterAssets
 		private float _jumpTimeoutDelta;
 		private float _fallTimeoutDelta;
 
-	
+
 #if ENABLE_INPUT_SYSTEM
 		private PlayerInput _playerInput;
 #endif
@@ -78,11 +78,11 @@ namespace StarterAssets
 		{
 			get
 			{
-				#if ENABLE_INPUT_SYSTEM
+#if ENABLE_INPUT_SYSTEM
 				return _playerInput.currentControlScheme == "KeyboardMouse";
-				#else
+#else
 				return false;
-				#endif
+#endif
 			}
 		}
 
@@ -122,6 +122,17 @@ namespace StarterAssets
 			CameraRotation();
 		}
 
+		// ============================================================
+		// MANUAL MODIFICATION TO STARTER ASSETS SCRIPT
+		// Added for weapon-based zoom sensitivity.
+		// ============================================================
+		public void ChangeRotationSpeed(float fov)
+		{
+			const float DEFAULT_FOV = 40f;
+
+			RotationSpeed = fov / DEFAULT_FOV;
+		}
+
 		private void GroundedCheck()
 		{
 			// set sphere position, with offset
@@ -136,7 +147,7 @@ namespace StarterAssets
 			{
 				//Don't multiply mouse input by Time.deltaTime
 				float deltaTimeMultiplier = IsCurrentDeviceMouse ? 1.0f : Time.deltaTime;
-				
+
 				_cinemachineTargetPitch += _input.look.y * RotationSpeed * deltaTimeMultiplier;
 				_rotationVelocity = _input.look.x * RotationSpeed * deltaTimeMultiplier;
 
