@@ -79,6 +79,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Weapon
   muzzle: {fileID: 3920964230317367977}
+  raycastLayers:
+    serializedVersion: 2
+    m_Bits: 123
 --- !u!1001 &3868663234087996697
 PrefabInstance:
   m_ObjectHideFlags: 0

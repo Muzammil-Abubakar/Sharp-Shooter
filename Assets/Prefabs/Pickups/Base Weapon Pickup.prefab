@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5332173221950338166}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 5540984476435634922}
   - component: {fileID: 3897147227172858388}
   - component: {fileID: 3552352244664913986}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Base Weapon Pickup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,6 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 192cce66bdb98f741baf3a287bd17e71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponPickup
+  weaponSO: {fileID: 0}
   rotateTransform: {fileID: 5332173221950338166}
   rotationSpeed: 100
 --- !u!1 &2583379266056605111
@@ -112,7 +113,7 @@ GameObject:
   - component: {fileID: 7302785971316505983}
   - component: {fileID: 6386497721883827969}
   - component: {fileID: 7452159227178043266}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
