@@ -199,12 +199,15 @@ public class ActiveWeapon : MonoBehaviour
 
     public void IncreaseAmmo(int amount)
     {
-        if (amount <= 0)
+        if (amount <= 0 || weaponSO == null)
         {
             return;
         }
 
+        // Increase ammo, but never go above the current weapon's magazine size.
         currentAmmo += amount;
+        currentAmmo = Mathf.Min(currentAmmo, weaponSO.MagazineSize);
+
         UpdateAmmoText();
     }
 
