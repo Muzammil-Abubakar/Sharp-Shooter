@@ -14,6 +14,7 @@ public class Robot : MonoBehaviour
 
     private void Update()
     {
+        if(!target) return;
         navMeshAgent.SetDestination(target.position);
     }
 
