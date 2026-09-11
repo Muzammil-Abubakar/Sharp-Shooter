@@ -17,6 +17,23 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
+    public void SelfDestruct()
+    {
+        Debug.Log("Enemy self-destructed!");
+
+        // Spawn the explosion VFX at the enemy's position.
+        if (robotExplosion != null)
+        {
+            Instantiate(
+                robotExplosion,
+                transform.position,
+                transform.rotation
+            );
+        }
+
+        Destroy(gameObject);
+    }
+
     private void Die()
     {
         Debug.Log("Enemy died!");

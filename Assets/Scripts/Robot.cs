@@ -1,4 +1,3 @@
-
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -17,5 +16,17 @@ public class Robot : MonoBehaviour
     {
         navMeshAgent.SetDestination(target.position);
     }
-}
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            EnemyHealth enemyHealth = GetComponent<EnemyHealth>();
+
+            if (enemyHealth != null)
+            {
+                enemyHealth.SelfDestruct();
+            }
+        }
+    }
+}
