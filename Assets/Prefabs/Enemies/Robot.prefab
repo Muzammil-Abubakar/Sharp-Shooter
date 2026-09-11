@@ -130,6 +130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
   health: 10
+  robotExplosion: {fileID: 191186, guid: 712d211d457a40a4ea9e579845d37b9b, type: 3}
 --- !u!1 &7158462786185527571
 GameObject:
   m_ObjectHideFlags: 0

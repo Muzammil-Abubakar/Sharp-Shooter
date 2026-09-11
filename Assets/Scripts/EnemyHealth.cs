@@ -3,6 +3,7 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
     [SerializeField] private int health = 3;
+    [SerializeField] private GameObject robotExplosion;
 
     public void TakeDamage(int damage)
     {
@@ -19,6 +20,16 @@ public class EnemyHealth : MonoBehaviour
     private void Die()
     {
         Debug.Log("Enemy died!");
+
+        // Spawn the explosion VFX at the enemy's position.
+        if (robotExplosion != null)
+        {
+            Instantiate(
+                robotExplosion,
+                transform.position,
+                transform.rotation
+            );
+        }
 
         Destroy(gameObject);
     }
