@@ -1,8 +1,14 @@
 using UnityEngine;
+using Unity.Cinemachine;
 
 public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] private int health = 5;
+
+    [SerializeField] private CinemachineCamera virtualCamera;
+    [SerializeField] private Transform weaponCamera;
+
+    [SerializeField] private int deathCameraPriority = 20;
 
     public void TakeDamage(int damage)
     {
@@ -12,7 +18,15 @@ public class PlayerHealth : MonoBehaviour
 
         if (health <= 0)
         {
-            Destroy(gameObject);
+            HandleDeath();
         }
+    }
+
+    private void HandleDeath()
+    {
+        weaponCamera.SetParent(null);
+        virtualCamera.Priority = deathCameraPriority;
+
+        Destroy(gameObject);
     }
 }

@@ -275,6 +275,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
   health: 5
+  virtualCamera: {fileID: 0}
+  weaponCamera: {fileID: 5948426516072799027}
+  deathCameraPriority: 20
 --- !u!1 &3562363393948157763
 GameObject:
   m_ObjectHideFlags: 0
