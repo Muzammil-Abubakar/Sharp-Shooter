@@ -4,17 +4,22 @@ using UnityEngine.AI;
 public class Robot : MonoBehaviour
 {
     private NavMeshAgent navMeshAgent;
-
-    [SerializeField] private Transform target;
+    private Transform target;
 
     private void Awake()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
     }
 
+    public void SetTarget(Transform target)
+    {
+        this.target = target;
+    }
+
     private void Update()
     {
-        if(!target) return;
+        if (!target) return;
+
         navMeshAgent.SetDestination(target.position);
     }
 
