@@ -8,6 +8,7 @@ public class Turret : MonoBehaviour
     [SerializeField] private GameObject projectilePrefab;
     [SerializeField] private Transform projectileSpawnPoint;
     [SerializeField] private float fireRate = 2f;
+    [SerializeField, Range(1, 5)] private int damage = 2;
 
     private float fireTimer;
 
@@ -36,13 +37,26 @@ public class Turret : MonoBehaviour
 
         if (fireTimer >= fireInterval)
         {
-            Instantiate(
-                projectilePrefab,
-                projectileSpawnPoint.position,
-                projectileSpawnPoint.rotation
-            );
-
+            FireProjectile();
             fireTimer = 0f;
+        }
+    }
+
+    private void FireProjectile()
+    {
+        GameObject projectileObject = Instantiate(
+            projectilePrefab,
+            projectileSpawnPoint.position,
+            projectileSpawnPoint.rotation
+        );
+
+        projectileObject.transform.LookAt(target.transform);
+
+        Projectile projectile = projectileObject.GetComponent<Projectile>();
+
+        if (projectile != null)
+        {
+            projectile.Init(damage);
         }
     }
 }
