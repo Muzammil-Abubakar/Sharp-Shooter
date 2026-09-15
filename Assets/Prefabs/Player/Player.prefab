@@ -274,7 +274,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 995de583346ce1540a19aa82f00427b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
-  health: 5
+  health: 7
+  shieldBars:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   virtualCamera: {fileID: 0}
   weaponCamera: {fileID: 5948426516072799027}
   deathCameraPriority: 20
@@ -596,7 +607,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf0a21032424d714eb9d61d3e6f97bc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ActiveWeapon
-  startingWeaponSO: {fileID: 11400000, guid: 6a7f7e434d8016c43a7b917f34896733, type: 2}
+  startingWeaponSO: {fileID: 11400000, guid: 79d85240cfd2ec547b992e7a7c80b1f7, type: 2}
   ammoText: {fileID: 0}
   zoomVignette: {fileID: 0}
   cinemachineCamera: {fileID: 0}

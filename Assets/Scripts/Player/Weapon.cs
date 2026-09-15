@@ -41,7 +41,7 @@ public class Weapon : MonoBehaviour
                 Quaternion.LookRotation(hit.normal)
             );
 
-            EnemyHealth enemyHealth = hit.collider.GetComponent<EnemyHealth>();
+            EnemyHealth enemyHealth = hit.collider.GetComponentInParent<EnemyHealth>();
 
             if (enemyHealth != null)
             {
