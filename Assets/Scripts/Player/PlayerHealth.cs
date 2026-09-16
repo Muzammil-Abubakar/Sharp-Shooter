@@ -14,6 +14,8 @@ public class PlayerHealth : MonoBehaviour
 
     [SerializeField] private int deathCameraPriority = 20;
 
+    [SerializeField] private GameObject gameOverContainer;
+
     private void Awake()
     {
         AdjustShieldUI();
@@ -50,6 +52,11 @@ public class PlayerHealth : MonoBehaviour
     {
         weaponCamera.SetParent(null);
         virtualCamera.Priority = deathCameraPriority;
+
+        if (gameOverContainer != null)
+        {
+            gameOverContainer.SetActive(true);
+        }
 
         Destroy(gameObject);
     }
