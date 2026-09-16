@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using Unity.Cinemachine;
+using StarterAssets;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -55,6 +56,8 @@ public class PlayerHealth : MonoBehaviour
 
         if (gameOverContainer != null)
         {
+            StarterAssetsInputs starterAssetsInputs = FindAnyObjectByType<StarterAssetsInputs>();
+            starterAssetsInputs.SetCursorState(false);
             gameOverContainer.SetActive(true);
         }
 
